@@ -19,7 +19,7 @@ Release:       1%{?dist}
 Group:         Development/Languages
 License:       GPLv2+ or Ruby
 URL:           http://flori.github.com/json
-Source0:       http://rubygems.org/downloads/%{gemname}-%{version}.gem
+Source0:       http://rubygems.org/downloads/%{gem_name}-%{version}.gem
 #_mx Patch0:        rubygem-json-CVE-2013-0269-denial-of-service.patch
 Requires:      ruby(abi) = %{rubyabi}
 Requires:      ruby(rubygems) 
