@@ -1,8 +1,11 @@
 %global gem_name json
 %if 0%{?rhel} <= 6 && 0%{?fedora} <= 16
 %global gem_dir %(ruby -rubygems -e 'puts Gem::dir' 2>/dev/null)
+%global gem_dir_i386 %(ruby -rubygems -e 'puts Gem::dir.sub("lib64","lib")' 2>/dev/null)
 %global gem_instdir %{gem_dir}/gems/%{gem_name}-%{version}
+%global gem_instdir_i386 %{gem_dir_i386}/gems/%{gem_name}-%{version}
 %global gem_docdir %{gem_dir}/doc/%{gem_name}-%{version}
+%global gem_docdir_i386 %{gem_dir_i386}/doc/%{gem_name}-%{version}
 %global gem_cache %{gem_dir}/cache
 %global gem_libdir %{gem_instdir}/lib
 %global gem_extdir %{_libdir}/gems/exts/%{gem_name}-%{version}
@@ -101,16 +104,17 @@ popd
 %{gem_spec}
 
 %files doc
-%{gem_instdir}/Rakefile
-%{gem_instdir}/data
-%{gem_instdir}/tests
-%{gem_instdir}/*gemspec
-%doc %{gem_docdir}
+%{gem_instdir_i386}/Rakefile
+%{gem_instdir_i386}/data
+%{gem_instdir_i386}/tests
+%{gem_instdir_i386}/*gemspec
+%doc %{gem_docdir_i386}
 
 %changelog
 * Fri Jun 07 2013 Sergey Mihailov <sergey.mihailov@gmail.com> - 1.8.0-1
 - Update release
-- Drop patch : Fix for CVE-2013-0269.
+- Drop patch : Fix for CVE-2013-0269
+- add gem_dir_i386 for build noarch doc in arch 64.
 
 * Wed Feb 20 2013 Troy Dawson <tdawson@redhat.com> - 1.7.3-2
 - Fix for CVE-2013-0269.
